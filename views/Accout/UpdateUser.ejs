@@ -1,0 +1,39 @@
+<%-include('../Inclue/menu.ejs')%>
+<div class="container bg-warning">
+  <div style="font-size: 30px; color: red; text-align: center;">
+      Dang Ky
+  </div>
+  <div style="margin-left: 50px;">
+    <form method="post" action="">
+        <label for="exampleFormControlInput1" class="form-label">Role</label>
+        <select class="form-select" name="Role" style="width: 200px;">
+            <option >user</option>
+            <option >admin</option>
+           </select>
+               
+        <!-- <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Role</label>
+            <input type="text" value="<%=User.Role  %>" class="form-control" id="exampleFormControlInput1" placeholder="UsersName" name="Role">
+          </div> -->
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">User Name</label>
+            <input type="text" value="<%=User.Username  %>" class="form-control" id="exampleFormControlInput1" placeholder="UsersName" name="Username">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" value="<%=User.Email  %>"  class="form-control" id="exampleFormControlInput1" placeholder="Email" name="Email">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">PassWord</label>
+            <input type="password" value="<%=User.PassWord  %>"  class="form-control" id="exampleFormControlInput1" placeholder="PassWord" name="PassWord">
+          </div>
+
+         
+          <br>
+         <div style="text-align: center;width: '100%';" >
+          <input type="submit" value="Them nguoi dung" class="btn btn-secondary" />
+         </div>
+    </form>
+  </div>
+</div>
+<%-include('../Inclue/Footers.ejs')  %>

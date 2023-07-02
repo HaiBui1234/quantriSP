@@ -1,0 +1,32 @@
+<%-include('../Inclue/menu.ejs')%>
+<div class="container bg-warning">
+  <div style="font-size: 30px; color: red; text-align: center;">
+      Dang Ky
+  </div>
+  <div style="margin-left: 50px;">
+    <form method="post" action="">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="UsersName" name="Username">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" name="Email">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">PassWord</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="PassWord" name="PassWord">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Tu cach</label>
+            <input readonly  value="user " type="text" class="form-control" id="exampleFormControlInput1" placeholder="Role" name="Role">
+          </div>
+         
+          <br>
+         <div style="text-align: center;width: '100%';" >
+          <input type="submit" value="Them nguoi dung" class="btn btn-secondary" />
+         </div>
+    </form>
+  </div>
+</div>
+<%-include('../Inclue/Footers.ejs')  %>

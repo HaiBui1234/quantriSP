@@ -1,0 +1,12 @@
+var express=require('express');
+var router=express.Router();
+var UserController=require('../Controller/UsersController');
+var CheckLogin=require('../Controller/CheckLogin');
+router.get('/ListUsers',CheckLogin.CheckLogin,UserController.getListUser);
+router.delete('/ListUsers/:id',UserController.deleteUser);
+router.get('/updateUser/:id',CheckLogin.CheckLogin,UserController.updateUser);
+router.post('/updateUser/:id',UserController.updateUser);
+router.post('/ListUsers',UserController.deleteUser);
+router.get('/AddUsers',UserController.AddUsers);
+router.post('/AddUsers',UserController.postUsers);
+module.exports=router;

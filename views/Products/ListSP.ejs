@@ -1,0 +1,155 @@
+<%-include('../Inclue/menu.ejs')%>
+    <div class="container">
+        <div style="font-size: 30px; color: red; text-align: center;">
+            Danh Sách Sản Phẩm
+        </div>
+       
+
+        <span> <a class="btn btn-primary" href="AddSP"> +Thêm SP</a></span>
+        <div class="row">
+           <form action="">
+            <div class="row" style="margin-bottom: 10px;">
+
+                <div class="col-3" style="width: 200px; margin-top: 10px;">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Thứ tự</option>
+                        <option value="1">Tang dan</option>
+                        <option value="2">Giam dan</option>
+                    </select>
+                </div>
+              
+                    <div class="col-3" style="width: 200px; margin-top: 10px;">
+                        <select  name="id_Category" class="form-select" aria-label="Default select example">
+                            <option value="0" selected>All SP</option>
+                            <%ListCategory.forEach(row=>{%>
+                               <option value="<%=row.id%>">
+                                <%=row.name%>
+                               </option>
+                                <% }); %>
+                        </select>                 
+                    </div>
+                    <div class="col-3" style="width: 200px; margin-top: 10px;">
+                     
+                        <select name="Price" class="form-select" aria-label="Default select example">
+                            <option value="0" selected>Giá</option>
+                            <option value="1">Tăng dần</option>
+                            <option value="-1">Giam dan</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-3"  style="width: 200px; margin-top: 10px;">
+                       <input type="submit" class="btn btn-primary" value="Lọc">
+                    </div>
+            </div>
+            
+           </form>
+            <table class="table table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bor">ID</th>
+                        <th scope="col" class="bor">Name</th>
+                        <th scope="col" class="bor">Category</th>
+                        <th scope="col" class="bor">Image</th>
+                        <th scope="col" class="bor">Description</th>
+                        <th scope="col" class="bor">Price</th>
+                        <th scope="col" class="bor">Delete</th>
+                        <th scope="col" class="bor">Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="">
+                        <% ListProduct.forEach((row)=> {%>
+                            <tr>
+                                <td>
+                                    <%=row.id%>
+                                </td>
+                                <td>
+                                <a href="/sp/DetailSP/<%=row.id%>" class="btn"> <%=row.name%></a>
+                                </td>
+                                <td>
+                                    <%=row.id_Category.name%>
+                                </td>
+                                <td>
+                                    <img src="<%=row.image%>" alt="" width="40">
+                                </td>
+                                <td>
+                                    <%=row.description%>
+                                </td>
+                                <td>
+                                    <%=row.price%>
+                                </td>
+                                <td>
+                                    <a class="btn" data-id="<%=row.id%>" data-bs-toggle="modal"
+                                        data-bs-target="#ModalDelete">
+                                        <img src="/images/delete.png" alt="" width="30"></a>
+                                </td>
+                                <td>
+                                    <a class="btn" href="/SP/Update/<%=row.id%>"><img src="/images/update.png" alt=""
+                                            width="30"></a>
+                                </td>
+                            </tr>
+                            <%}); %>
+                               
+
+                    </form>
+                </tbody>
+            </table>
+             <!-- Modal -->
+             <div class="modal fade" id="ModalDelete" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h1 class="modal-title fs-5" id="exampleModalLabel">DELETE SP</h1>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                             aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         Do you want delete?
+                     </div>
+                     <div class="modal-footer">
+                         <button type="submit" id="btn-delete-sp"  class="btn btn-danger" data-bs-dismiss="modal">Xoa
+                             Bo</button>
+                         <button type="button" class="btn btn-outline-dark"
+                             data-bs-dismiss="modal">Huy</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+            <div style="margin-left: 1150px;">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-primary">1</button>
+                        <button type="button" class="btn btn-primary">2</button>
+                        <button type="button" class="btn btn-primary">3</button>
+                        <button type="button" class="btn btn-primary">4</button>
+                    </div>
+                
+                </div>
+            </div>
+           
+        </div>
+        <form name="delete-form"  method="post">
+        </form>
+        <script>
+              var formLoc=document.forms['form-loc'];
+              function submitForm(){
+                formLoc.submit();
+              }
+             document.addEventListener('DOMContentLoaded',function(){
+                var deleteForm=document.forms['delete-form'];
+                var btnDelete=document.getElementById("btn-delete-sp");
+                const ModalDelete = document.getElementById('ModalDelete')
+                ModalDelete.addEventListener('show.bs.modal', event => {            
+                const button = event.relatedTarget              
+                const id = button.getAttribute('data-id')  
+                console.log(id);   
+                btnDelete.onclick=()=>{
+                console.log(deleteForm)
+                deleteForm.action ='/sp/ListSp/'+id+'?_method=DELETE';
+                deleteForm.submit();
+             }
+            })
+             })       
+        </script>
+<%-include('../Inclue/Footers.ejs') %>

@@ -1,0 +1,133 @@
+<%-include('../Inclue/menu.ejs')%>
+  <div class="container">
+    <div style="font-size: 30px; color: red; text-align: center;">
+      LIST USER
+    </div>
+    <span> <a class="btn btn-primary" href="AddUsers"> +Add User</a></span>
+    <div class="row">
+      <div class="col-3" style=" margin-top: 10px;">
+        <form class="d-flex" role="search">
+          <input name="username" value="<%=username %>" style="width: 300px;" class="form-control me-2" type="search" placeholder="Search User" aria-label="Search" required>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+     <form action="" class="col-9">
+      <div class="row">
+        <div class="col-4" style="width: 200px; margin-top: 10px;">
+          <select name="Role" class="form-select" aria-label="Default select example">
+            <option value="0" selected>role</option>
+            <option value="admin">admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+        <div class="col-4" style="width: 200px; margin-top: 10px;">
+          <select name="SapXep" class="form-select" aria-label="Default select example">
+            <option value="0" selected>Sap xep</option>
+            <option value="1">Tang dan</option>
+            <option value="-1">Giam dan</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <input type="submit" value="Loc" class="btn btn-primary" style="width: 100px; margin-top: 10px;">
+         </div>
+      </div>
+     
+     </form>
+    </div>
+
+
+
+    <table style="margin-top: 10px;" class="table table-bordered table-striped">
+      <thead>
+        <tr >
+          <th scope="col" class="bor">ID</th>
+
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Delete</th>
+          <th scope="col">Update</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <form action="">
+          <% if (ListUser.length==0) {%>
+            <tr>
+            Khong tim thay
+            </tr>
+          <%} %>
+          <% ListUser.forEach(row=>{%>
+            <tr>
+              <td>
+                <%=row.id%>
+              </td>
+              <td>
+                <%=row.Username%>
+              </td>
+              <td>
+                <%=row.Email%>
+              </td>
+              <td>
+                <%=row.Role%>
+              </td>
+              <td><span class="btn" data-bs-toggle="modal" data-id="<%=row.id%>" data-bs-target="#ModalDelete"><img src="/images/delete.png" alt=""
+                    width="30"></span>
+              </td>
+              <td><span class="btn"><a href="/users/updateUser/<%=row.id%>"><img src="/images/update.png" alt="" width="30"></a></span></td>
+            </tr>
+            <% }); %>
+             
+
+        </form>
+      </tbody>
+    </table>
+     <!-- Modal -->
+     <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">DELETE SP</h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           Do you want delete?
+         </div>
+         <div class="modal-footer">
+           <button type="submit" id="btnDeleteUser" class="btn btn-danger" data-bs-dismiss="modal">Xoa Bo</button>
+           <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Huy</button>
+         </div>
+       </div>
+     </div>
+   </div>
+    <div style="margin-left: 1150px;">
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-primary">1</button>
+          <button type="button" class="btn btn-primary">2</button>
+          <button type="button" class="btn btn-primary">3</button>
+          <button type="button" class="btn btn-primary">4</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <form  name="formDeleteUser1" method="post"></form>
+  <script>
+    document.addEventListener('DOMContentLoaded',function(){
+                var deleteForm=document.forms['formDeleteUser1']
+                var btnDelete=document.getElementById("btnDeleteUser")
+                const ModalDelete = document.getElementById('ModalDelete')
+                ModalDelete.addEventListener('show.bs.modal', event => {            
+                const button = event.relatedTarget              
+                const id = button.getAttribute('data-id')     
+                btnDelete.onclick=()=>{
+                console.log(deleteForm)
+                deleteForm.action ='/users/ListUsers/'+id+'?_method=DELETE'
+                deleteForm.submit();
+             }
+            })
+             })       
+  </script>
+  <%-include('../Inclue/Footers.ejs')  %>

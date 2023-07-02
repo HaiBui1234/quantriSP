@@ -1,0 +1,42 @@
+<%-include('../Inclue/menu.ejs')%>
+<div class="container">
+  <div class="container bg-warning">
+    <div style="font-size: 30px; color: red; text-align: center;">
+        Them San Pham
+    </div>
+    <div style="margin-left: 50px;">
+      <form method="post" enctype="multipart/form-data">
+        <div class="col-4" style="width: 200px; margin-top: 10px;">
+          <select name="Category" class="form-select" aria-label="Default select example">
+            <% ListCategory.forEach(row => {%>
+              <option value="<%=row.id%>"><%=row.name %></option>
+            <%}); %>
+          </select>
+      </div>
+       
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Ten SP</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ten san pham" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Hinh anh</label>
+              <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="Link Anh" name="image">
+            </div>
+            
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Gia</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Gia" name="price">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Mo ta</label> <br>
+             <textarea placeholder="Mo ta" name="description" cols="30" rows="10"></textarea>
+            </div>
+            <br>
+           <div style="text-align: center;width: '100%';" >
+            <input type="submit" value="Them san pham" class="btn btn-secondary" />
+           </div>
+      </form>
+    </div>
+</div>
+</div>
+<%-include('../Inclue/Footers.ejs')  %>

@@ -1,0 +1,15 @@
+
+<%-include('../Inclue/menu.ejs')%>
+<div class="container">
+    <form action="" method="post">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input value="<%=obj.name%>"  type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name" name="name">
+          </div>
+          <br>
+         <div style="text-align: center;width: '100%';" >
+          <input type="submit" value="Update" class="btn btn-secondary" />
+         </div>
+    </form>
+</div>
+<%-include('../Inclue/Footers.ejs')%>
